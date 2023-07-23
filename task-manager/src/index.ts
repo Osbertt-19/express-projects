@@ -1,16 +1,23 @@
-import * as dotenv from "dotenv";
 import express from "express";
+import dotenv from "dotenv";
 import { connectDB } from "./db";
+import { router as taskRouter } from "./routes/tasks";
+dotenv.config();
 
-dotenv.config({ path: __dirname + "/.env" });
 const app = express();
 
 app.get("/", (req, res) => {
   res.send("hello");
 });
 
+app.use(express.json());
+app.use("/api/v1/tasks", taskRouter);
+
 const port = process.env.PORT;
-app.listen(port, () => {
-  connectDB(process.env.MONGO_URI);
-  console.log(`server listening at port ${port}`);
-});
+const startServer = async () => {
+  await connectDB(process.env.MONGO_URI);
+  app.listen(port, () => {
+    console.log(`server is listening on port ${port}`);
+  });
+};
+startServer();
