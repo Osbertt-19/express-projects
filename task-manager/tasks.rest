@@ -8,3 +8,22 @@ Content-Type: application/json
 {
     "name":"to sleep"
 }
+
+###
+GET http://127.0.0.1:3000/api/v1/tasks/64bcfdf4efec0731c1ef0a80
+
+
+###
+
+PATCH  http://127.0.0.1:3000/api/v1/tasks/64bcfdf4efec0731c1ef0a80
+Content-Type: application/json
+
+{
+    "name":"to drink",
+    "completed":true
+}
+
+###
+
+DELETE   http://127.0.0.1:3000/api/v1/tasks/64bcfdf4efec0731c1ef0a80
+
