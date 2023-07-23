@@ -1,22 +1,24 @@
 import { RequestHandler } from "express";
+import { StatusCodes } from "http-status-codes";
 
 import { Task } from "../models/Task";
+import { STATUS_CODES } from "http";
 
 export const getAllTasks: RequestHandler = async (req, res) => {
   const tasks = await Task.find({});
-  res.status(200).json({ tasks });
+  res.status(StatusCodes.OK).json({ tasks });
 };
 
 export const getTaskByID: RequestHandler = async (req, res) => {
   const { id } = req.params;
   const gottenTask = await Task.findById(id).lean();
-  res.status(201).json({ gottenTask });
+  res.status(StatusCodes.OK).json({ gottenTask });
 };
 
 export const createTask: RequestHandler = async (req, res) => {
   const { name } = req.body;
   const createdTask = await Task.create({ name });
-  res.status(201).json({ createdTask });
+  res.status(StatusCodes.CREATED).json({ createdTask });
 };
 
 export const updateTask: RequestHandler = async (req, res) => {
@@ -26,11 +28,11 @@ export const updateTask: RequestHandler = async (req, res) => {
     name,
     completed,
   }).lean();
-  res.status(201).json({ updatedTask });
+  res.status(StatusCodes.OK).json({ updatedTask });
 };
 
 export const deleteTask: RequestHandler = async (req, res) => {
   const { id } = req.params;
   const deletedTask = await Task.findByIdAndDelete(id).lean();
-  res.status(201).json({ deletedTask });
+  res.status(StatusCodes.OK).json({ deletedTask });
 };
