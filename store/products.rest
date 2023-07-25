@@ -1,0 +1,23 @@
+###
+GET http://127.0.0.1:5000/api/v1/products
+
+
+###
+
+GET http://127.0.0.1:5000/api/v1/products?name=salad
+
+###
+
+GET http://127.0.0.1:5000/api/v1/products?featured=false&limit=40
+
+###
+
+GET http://127.0.0.1:5000/api/v1/products?company=nike
+
+###
+
+GET http://127.0.0.1:5000/api/v1/products?sort=-createdAt&company=nike
+
+###
+
+GET http://127.0.0.1:5000/api/v1/products?numeric=price%3C500&sort=-price%20name
